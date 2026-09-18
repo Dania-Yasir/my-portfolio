@@ -963,12 +963,16 @@ h3 {
   padding: 54px;
   border-radius: 28px;
 
-  background: var(--blue);
+ background: linear-gradient(
+  135deg,
+  #3B5368 0%,
+  #527A7C 100%
+);
   color: var(--paper);
 }
 
 .contact-card .eyebrow {
-  color: #CCFBF1;
+  color: #D6F3EE;
 }
 
 .contact-card h2 {
@@ -977,7 +981,7 @@ h3 {
 
 .contact-card p {
   max-width: 680px;
-  color: var(--soft-blue);
+  color: #E7EEF3;
 }
 
 .contact-actions {

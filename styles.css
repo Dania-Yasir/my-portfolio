@@ -1407,9 +1407,190 @@ h3 {
   .contact-card .contact-form textarea {
     font-size: 16px;
   }
+  
 
   .footer-inner {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+/* =========================
+   ABOUT ME DECORATION
+   ========================= */
+
+#about {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft decorative circles */
+#about::before,
+#about::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.12;
+}
+
+#about::before {
+  width: 220px;
+  height: 220px;
+  background: #2563EB;
+  top: 20px;
+  right: -80px;
+  animation: aboutFloat 7s ease-in-out infinite;
+}
+
+#about::after {
+  width: 140px;
+  height: 140px;
+  background: #14B8A6;
+  bottom: 20px;
+  left: -50px;
+  animation: aboutFloat 6s ease-in-out infinite reverse;
+}
+
+
+/* About text card */
+#about .about-copy {
+  position: relative;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  border-radius: 22px;
+  padding: 32px 34px;
+  box-shadow: 0 15px 40px rgba(17, 24, 39, 0.07);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  z-index: 2;
+}
+
+/* Small lift when mouse is over the card */
+#about .about-copy:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 50px rgba(17, 24, 39, 0.11);
+}
+
+
+/* Blue / teal decorative line */
+#about .about-copy::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 32px;
+  width: 4px;
+  height: 72px;
+  border-radius: 10px;
+  background: linear-gradient(
+    to bottom,
+    #2563EB,
+    #14B8A6
+  );
+  animation: lineGlow 3s ease-in-out infinite;
+}
+
+
+/* Paragraph spacing */
+#about .about-copy p {
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+
+
+/* Highlight the first paragraph slightly */
+#about .about-copy p:first-child {
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+
+/* CV Link */
+#about .about-copy .text-link {
+  display: inline-block;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  transition: transform 0.25s ease;
+}
+
+#about .about-copy .text-link:hover {
+  transform: translateX(5px);
+}
+
+
+/* GPA Badge */
+#about .about-copy p:last-child {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: 4px;
+  margin-bottom: 0;
+  padding: 9px 15px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  color: #1D4ED8;
+  font-size: 0.9rem;
+}
+
+
+/* Small decoration beside heading */
+#about .about-title h2 {
+  position: relative;
+}
+
+#about .about-title h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  margin-top: 18px;
+  border-radius: 50px;
+  background: linear-gradient(
+    90deg,
+    #2563EB,
+    #14B8A6
+  );
+}
+
+
+/* Very subtle floating animation */
+@keyframes aboutFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+
+/* Accent line animation */
+@keyframes lineGlow {
+  0%, 100% {
+    opacity: 0.65;
+    height: 72px;
+  }
+
+  50% {
+    opacity: 1;
+    height: 95px;
+  }
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+  #about .about-copy {
+    padding: 26px 24px;
+  }
+
+  #about::before {
+    width: 150px;
+    height: 150px;
+  }
+
+  #about::after {
+    width: 100px;
+    height: 100px;
   }
 }

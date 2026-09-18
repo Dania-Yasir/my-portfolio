@@ -1630,30 +1630,31 @@ main,
    CERTIFICATES DECORATION
    ================================================== */
 
+/* ==================================================
+   CREATIVE CERTIFICATE CARDS
+   ================================================== */
+
 .cert-card {
   position: relative;
+  isolation: isolate;
 
-  border: 1px solid transparent;
+  border: 1.5px solid transparent;
 
   background:
-    linear-gradient(
-      rgba(255, 255, 255, 0.96),
-      rgba(255, 255, 255, 0.96)
-    ) padding-box,
-
+    linear-gradient(#ffffff, #ffffff) padding-box,
     linear-gradient(
       135deg,
-      rgba(37, 99, 235, 0.55),
-      rgba(20, 184, 166, 0.40),
-      rgba(37, 99, 235, 0.18)
+      #2563EB 0%,
+      #14B8A6 45%,
+      rgba(37, 99, 235, 0.20) 75%,
+      #2563EB 100%
     ) border-box;
 
-  border-radius: 20px;
-
+  border-radius: 22px;
   overflow: hidden;
 
   box-shadow:
-    0 12px 30px rgba(17, 24, 39, 0.06);
+    0 12px 35px rgba(17, 24, 39, 0.07);
 
   transition:
     transform 0.35s ease,
@@ -1661,66 +1662,186 @@ main,
 }
 
 
-/* Certificate lift */
-.cert-card:hover {
-  transform: translateY(-7px);
+/* Gradient strip at the top */
+.cert-card::before {
+  content: "";
+  position: absolute;
 
-  box-shadow:
-    0 22px 45px rgba(17, 24, 39, 0.12);
+  top: 0;
+  left: 12%;
+  width: 76%;
+  height: 4px;
+
+  border-radius: 0 0 20px 20px;
+
+  background: linear-gradient(
+    90deg,
+    #2563EB,
+    #14B8A6,
+    #2563EB
+  );
+
+  transition:
+    width 0.4s ease,
+    left 0.4s ease;
+
+  z-index: 5;
 }
 
 
-/* Decorative circle on certificate */
+/* Decorative glowing circle */
 .cert-card::after {
   content: "";
 
   position: absolute;
 
-  width: 65px;
-  height: 65px;
+  width: 100px;
+  height: 100px;
+
+  top: -55px;
+  right: -55px;
 
   border-radius: 50%;
 
-  right: -25px;
-  top: -25px;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(37, 99, 235, 0.20),
-      rgba(20, 184, 166, 0.18)
-    );
+  background: radial-gradient(
+    circle,
+    rgba(20, 184, 166, 0.22),
+    rgba(37, 99, 235, 0.08) 55%,
+    transparent 70%
+  );
 
   transition:
-    transform 0.4s ease,
-    opacity 0.4s ease;
+    transform 0.5s ease,
+    opacity 0.5s ease;
+
+  pointer-events: none;
 }
 
 
-/* Move decoration slightly on hover */
+/* Card hover */
+.cert-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 24px 55px rgba(17, 24, 39, 0.13),
+    0 0 0 4px rgba(37, 99, 235, 0.035);
+}
+
+
+/* Top line expands */
+.cert-card:hover::before {
+  left: 4%;
+  width: 92%;
+}
+
+
+/* Circle reacts */
 .cert-card:hover::after {
-  transform: scale(1.35);
-  opacity: 0.75;
+  transform: scale(1.45);
+  opacity: 0.85;
 }
 
 
-/* Certificate image frame */
+/* ==================================================
+   CERTIFICATE IMAGE FRAME
+   ================================================== */
+
 .cert-card .cert-image {
   position: relative;
-  margin: 10px;
 
-  border-radius: 14px;
+  margin: 14px;
+  margin-bottom: 4px;
+
+  border-radius: 16px;
 
   overflow: hidden;
 
   border: 1px solid rgba(37, 99, 235, 0.10);
 
-  background: #ffffff;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(238, 244, 255, 0.7),
+      #ffffff 45%,
+      rgba(234, 251, 248, 0.65)
+    );
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
 
-/* Image movement */
+/* Top-left decorative corner */
+.cert-card .cert-image::before {
+  content: "";
+
+  position: absolute;
+
+  top: 9px;
+  left: 9px;
+
+  width: 28px;
+  height: 28px;
+
+  border-top: 3px solid #2563EB;
+  border-left: 3px solid #2563EB;
+
+  border-radius: 7px 0 0 0;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  transition:
+    width 0.35s ease,
+    height 0.35s ease;
+}
+
+
+/* Bottom-right decorative corner */
+.cert-card .cert-image::after {
+  content: "";
+
+  position: absolute;
+
+  right: 9px;
+  bottom: 9px;
+
+  width: 28px;
+  height: 28px;
+
+  border-right: 3px solid #14B8A6;
+  border-bottom: 3px solid #14B8A6;
+
+  border-radius: 0 0 7px 0;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  transition:
+    width 0.35s ease,
+    height 0.35s ease;
+}
+
+
+/* Corners expand slightly */
+.cert-card:hover .cert-image::before,
+.cert-card:hover .cert-image::after {
+  width: 42px;
+  height: 42px;
+}
+
+
+/* Image */
 .cert-card .cert-image img {
+  position: relative;
+  z-index: 1;
+
   transition:
     transform 0.45s ease,
     filter 0.45s ease;
@@ -1732,24 +1853,43 @@ main,
 }
 
 
-/* Small accent above certificate title */
-.cert-card .cert-copy span {
+/* Slight glow around image */
+.cert-card:hover .cert-image {
+  border-color: rgba(37, 99, 235, 0.22);
+
+  box-shadow:
+    0 8px 25px rgba(37, 99, 235, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+
+/* ==================================================
+   CERTIFICATE TEXT
+   ================================================== */
+
+.cert-card .cert-copy {
+  position: relative;
+}
+
+
+.cert-card .cert-copy > span {
   position: relative;
   display: inline-block;
 }
 
 
-.cert-card .cert-copy span::after {
+/* Small gradient line under provider */
+.cert-card .cert-copy > span::after {
   content: "";
 
   display: block;
 
-  width: 30px;
+  width: 32px;
   height: 2px;
 
-  margin-top: 5px;
+  margin-top: 6px;
 
-  border-radius: 20px;
+  border-radius: 50px;
 
   background:
     linear-gradient(
@@ -1762,8 +1902,8 @@ main,
 }
 
 
-.cert-card:hover .cert-copy span::after {
-  width: 55px;
+.cert-card:hover .cert-copy > span::after {
+  width: 58px;
 }
 
 
